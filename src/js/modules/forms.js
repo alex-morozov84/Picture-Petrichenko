@@ -1,4 +1,6 @@
-const forms = () => {
+import {postData} from "../services/requests";
+
+const forms = (sum) => {
 
     const forms = document.querySelectorAll('form'),
         inputs = document.querySelectorAll('input'),
@@ -18,17 +20,17 @@ const forms = () => {
         question: 'assets/question.php'
     };
 
-    const postData = async (url, data) => {
-        let res = await fetch(url, {
-            method: "POST",
-            body: data
-        });
-        return await res.text();
-    };
+    // Эта функция теперь импортируется
+    // const postData = async (url, data) => {
+    //     let res = await fetch(url, {
+    //         method: "POST",
+    //         body: data
+    //     });
+    //     return await res.text();
+    // };
 
     uploads.forEach(upload => {
         upload.addEventListener('input', () => {
-            console.log(upload.files[0]);
             let dots;
             const name =  upload.files[0].name.split('.');
             name[0].length > 6 ? dots = "..." : dots =".";
@@ -39,6 +41,7 @@ const forms = () => {
     function clearInputs() {
         inputs.forEach(input => input.value = '');
         uploads.forEach(upload => upload.previousElementSibling.textContent = 'Файл не выбран');
+        document.querySelector('.calc-price').textContent = "Для расчета нужно выбрать размер картины и материал картины";
     }
 
     forms.forEach(item => {
@@ -64,6 +67,12 @@ const forms = () => {
             statusMessage.appendChild(statusText);
 
             const formData = new FormData(item);
+            // добавляем сумму, расчитанную в модуле calc
+            if (e.target.classList.contains('calc_form')) {
+                for (let key in sum) {
+                    formData.append(key, sum[key]);
+                }
+            }
 
             let api;
             item.closest('.popup-design') || item.classList.contains('calc_form') ? api = path.designer : api = path.question;
