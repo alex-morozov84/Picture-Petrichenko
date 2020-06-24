@@ -1,6 +1,7 @@
 import {getResource} from "../services/requests";
 
 const calc = (size, material, options, promocode, result, calcSum) => {
+  
     const sizeBlock = document.querySelector(size),
         materialBlock = document.querySelector(material),
         optionsBlock = document.querySelector(options),
@@ -63,6 +64,7 @@ const calc = (size, material, options, promocode, result, calcSum) => {
     let sizeValue = '', materialValue = '', optionsValue = '';
 
     function changeParam(event, elem) {
+       
         elem.addEventListener(event, (e) => {
             const target = e.target,
                 // получаем ID для элемента, в который ткнули

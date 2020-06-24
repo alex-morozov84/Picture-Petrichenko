@@ -1,0 +1,53 @@
+{
+    "styles": [
+        {
+            "src": "assets/img/styles-5.jpg",
+            "title": "Пастелью",
+            "link": "#pastel"
+        },
+        {
+            "src": "assets/img/styles-6.jpg",
+            "title": "Поп-арт",
+            "link": "#popart"
+        },
+        {
+            "src": "assets/img/styles-7.png",
+            "title": "Фотомозаика",
+            "link": "#mozaika"
+        },
+        {
+            "src": "assets/img/styles-8.jpg",
+            "title": "Шарж",
+            "link": "#sharj"
+        }
+    ],
+
+    "calc": {
+        "size": {
+            "40x50": "500",
+            "50x70": "1000",
+            "70x70": "1500",
+            "70x100": "2000"
+            }
+        ,
+        "material": 
+            {
+            "mat1": "1",
+            "mat2": "1.2",
+            "mat3": "1.5"
+            }
+        ,
+        "options": 
+            {
+            "option1": "1000",
+            "option2": "2000",
+            "option3": "500"
+            }
+        ,
+        "promocodes": 
+            {
+            "promocode1": "IWANTPOPART"
+            }
+    }
+    
+}

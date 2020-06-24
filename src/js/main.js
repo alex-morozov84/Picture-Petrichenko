@@ -10,7 +10,8 @@ import filter from "./modules/filter";
 window.addEventListener('DOMContentLoaded', () => {
     "use strict";
 
-    let calcSum = {};
+    let calcSum = {},
+        noPortfolio = ["grandmother", "granddad"];
 
     modals();
     sliders('.main-slider-item', 'vertical');
@@ -21,5 +22,5 @@ window.addEventListener('DOMContentLoaded', () => {
     checkTextInputs('[name="message"]');
     showMoreStyles('.button-styles', '#styles .row');
     calc('#size', '#material', '#options', '.promocode', '.calc-price', calcSum);
-    filter();
+    filter(noPortfolio);
 });
