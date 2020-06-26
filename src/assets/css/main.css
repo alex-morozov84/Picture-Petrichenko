@@ -902,10 +902,35 @@ h4 {
 .often-questions .accordion-heading span {
   border-bottom: 2px dotted #333;
 }
+/* класс для активного заголовка */
+.often-questions p.active-style span {
+  color: #e950d7;
+  font-weight: 900;
+  text-decoration: none;
+  border: 0;
+}
+/* когда заголовок получает класс active (при нажатии), то следующий за ним active-block становится видимым */
+.often-questions .accordion-heading.active+.accordion-block {
+  display: block;
+}
+/* по-умолчанию всек блоки невидимы. Закомментированные блоки использовались для первого варианта реализации */
 .often-questions .accordion-block {
-  margin-top: 1rem;
   background-color: #f7e7e6;
+  max-height: 0;
+  opacity: 0;
+  transition: all 0.3s ease-out;
+  /* чтоб нельзя было кликнуть на треугольник сверху блока */
+  overflow: hidden;
+  /* display: none; */
+  /* margin-top: 1rem;
+  padding: 3rem 4rem; */
+}
+/* для второго варианта. При появлении класса активности */
+.often-questions .accordion-block.active-content {
+  overflow: visible;
+  opacity: 1;
   padding: 3rem 4rem;
+  margin-top: 1rem;
 }
 .often-questions .accordion-block:before {
   content: '';
@@ -1260,6 +1285,19 @@ h4 {
 }
 .status {
   text-align: center;
+}
+.pageup {
+  opacity: 0;
+  width: 26px ;
+  height: 26px;
+  position: fixed;
+  bottom: 100px;
+  right: 5%;
+  z-index: 30;
+  background-color: #fff;
+  cursor: pointer;
+  border: 1px solid white;
+  transition: 1s all;
 }
 @media (max-width: 1399px) {
   .paints {
