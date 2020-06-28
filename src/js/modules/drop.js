@@ -27,6 +27,8 @@ const drop = () => {
         // в зависимости от формы разный цвет был изначально
         if (item.closest('.calc_form')) {
             item.closest('.file_upload').style.backgroundColor = "#fff";
+        } else if (item.closest('main')) {
+            item.closest('.file_upload').style.backgroundColor = "#f7e7e6";
         } else {
             item.closest('.file_upload').style.backgroundColor = "#ededed";
         }
@@ -50,9 +52,30 @@ const drop = () => {
     // помещаем файл в инпут
     fileInputs.forEach(input => {
         input.addEventListener('drop', (e) => {
+            
+            // помещаем в input файл
             input.files = e.dataTransfer.files;
+    
+            // В этом ДЗ при кидании картинки в инпут сверху страницы, она сразу же отправляется на сервер
+            if (input.closest('main')) {
 
-            // выводим название файла
+                const formData = new FormData();
+                formData.append('file', input.files[0]);
+                
+                const postData = async (url, data) => {
+                    let res = await fetch(url, {
+                        method: "POST",
+                        body: data
+                    });
+                    return await res.text();
+                };
+
+                postData('assets/server.php', formData)
+                    .then(res => console.log(res))
+                    .catch(() => console.log('Ошибка'));
+            }
+
+            // // выводим название файла
             let dots;
             const name =  input.files[0].name.split('.');
             name[0].length > 6 ? dots = "..." : dots = ".";
